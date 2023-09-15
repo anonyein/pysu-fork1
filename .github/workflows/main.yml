@@ -29,8 +29,12 @@ jobs:
       run: |
         sudo apt-get -y update && sudo apt-get -y install libarchive-tools xz-utils
         package_filename=python3-android-$PYVER-${{ matrix.env.ARCH }}-${{ matrix.env.API }}.tar.xz
-        # sudo needed as files created by docker may not be readable by the current user
         cd build && sudo bsdtar --xz -cf $package_filename *
         echo ::set-output name=package_filename::$package_filename
-    -name: upload build
-     run: |
+    - name: upload build
+      uses: actions/upload-artifact@v3
+      with:
+        name: binary
+        path: |
+          python3-android-$PYVER-${{ matrix.env.ARCH }}-${{ matrix.env.API }}.tar.xz
+
