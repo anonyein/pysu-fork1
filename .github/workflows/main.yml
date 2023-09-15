@@ -32,7 +32,7 @@ jobs:
     - name: upload build
       uses: actions/upload-artifact@v3
       with:
-        name: binary
+        name: binary-${{ matrix.env.ARCH }}
         path: |
-          python3-android-${{ matrix.env.PYVER }}-${{ matrix.env.ARCH }}-${{ matrix.env.API }}.tar.xz
+          build/python3-android-${{ matrix.env.PYVER }}-${{ matrix.env.ARCH }}-${{ matrix.env.API }}.tar.xz
 
