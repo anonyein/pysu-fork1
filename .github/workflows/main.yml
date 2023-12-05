@@ -25,6 +25,7 @@ jobs:
     - name: create package
       id: create_package
       run: |
+        sudo apt-get install bsdtar
         sudo apt-get -y update && sudo apt-get -y install libarchive-tools xz-utils
         package_filename=python3-android-${{ matrix.env.PYVER }}-${{ matrix.env.ARCH }}-${{ matrix.env.API }}.tar.xz
         cd build && sudo bsdtar --xz -cf $package_filename *
